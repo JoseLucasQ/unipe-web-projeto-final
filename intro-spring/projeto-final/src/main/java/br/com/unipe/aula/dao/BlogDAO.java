@@ -28,11 +28,18 @@ public class BlogDAO {
 		{ 
 			return blogs; 
 		}
-		
+		public Blog getId(int id)
+		{
+			return blogs.get(id);
+		}
 		public void excluir(int id)
 		{
 			blogs.remove(id);
 			System.out.println(blogs);
+		}
+		public void editar(int id, Blog blog)
+		{
+			blogs.get(id).setTexto(blog.getTexto());
 		}
 
 }

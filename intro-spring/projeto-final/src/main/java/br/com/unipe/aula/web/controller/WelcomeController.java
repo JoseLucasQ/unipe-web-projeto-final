@@ -84,5 +84,21 @@ public class WelcomeController {
 		
 		return "redirect:../posts";
 	}
+	
+	@GetMapping(value = "/editar/{id}")
+	public ModelAndView editarPost(@PathVariable("id") int id, Model model)
+	{
+		ModelAndView view = new ModelAndView("editar");
+		model.addAttribute("blog", dao.getId(id));
+		
+		return view;
+	}
+	@PostMapping(value = "/update/{id}")
+	public String updateBlog(@PathVariable("id") int id, @ModelAttribute Blog blog)
+	{
+		dao.editar(id, blog);
+		
+		return "redirect:../posts";
+	}
 
 }
