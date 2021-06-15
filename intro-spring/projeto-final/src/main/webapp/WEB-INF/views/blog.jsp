@@ -28,8 +28,8 @@
 					<tr>
 						<td>${blog.texto}</td>
 						<td>
-							<a href="editar/${blogs.indexOf(blog)}">Editar</a>
-							<a href="excluir/${blogs.indexOf(blog)}">Excluir</a>
+							<a href="editar/${blogs.id}">Editar</a>
+							<a href="excluir/${blogs.id}">Excluir</a>
 						</td>
 					</tr>
 				</c:forEach>	

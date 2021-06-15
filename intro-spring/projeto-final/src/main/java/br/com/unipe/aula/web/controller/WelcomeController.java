@@ -30,9 +30,10 @@ public class WelcomeController {
 		return "welcome";
 	}
 	@RequestMapping(value = "/blog", method = RequestMethod.GET)
+	//pequeno error aqui depois do POM
 	public ModelAndView blog(Model model)
 	{
-		model.addAttribute("blog", new Blog());
+		model.addAttribute("blog", new Blog(null, null));
 		return new ModelAndView("blog");
 	}
 	
@@ -77,7 +78,7 @@ public class WelcomeController {
 	}
 	
 	@GetMapping(value = "/excluir/{id}")
-	public String excluirPost(@PathVariable("id") int id, Model model)
+	public String excluirPost(@PathVariable("id") Long id, Model model)
 	{
 		dao.excluir(id);
 		
@@ -86,7 +87,7 @@ public class WelcomeController {
 	}
 	
 	@GetMapping(value = "/editar/{id}")
-	public ModelAndView editarPost(@PathVariable("id") int id, Model model)
+	public ModelAndView editarPost(@PathVariable("id") Long id, Model model)
 	{
 		ModelAndView view = new ModelAndView("editar");
 		model.addAttribute("blog", dao.getId(id));
@@ -94,9 +95,9 @@ public class WelcomeController {
 		return view;
 	}
 	@PostMapping(value = "/update/{id}")
-	public String updateBlog(@PathVariable("id") int id, @ModelAttribute Blog blog)
+	public String updateBlog(@ModelAttribute Blog blog)
 	{
-		dao.editar(id, blog);
+		dao.editar(blog);
 		
 		return "redirect:../posts";
 	}
